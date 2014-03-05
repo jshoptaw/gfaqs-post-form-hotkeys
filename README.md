@@ -2,12 +2,6 @@ GameFAQs Post Form Hotkeys
 ======================================
 Miss the old GameFOX hotkeys (Alt + Shift + Z, etc.) for posting? This script brings them back. Adds the hotkeys to GameFAQs's stock quick post and regular "post message" forms. Hovering over a button will display a tooltip displaying that button's hotkey.
 
-<style type="text/css">
-th[scope="row"] {
-	text-align: right;
-}
-</style>
-
 <table class="standard-table">
 	<colgroup>
 		<col class="headers">

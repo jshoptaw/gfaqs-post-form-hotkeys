@@ -98,9 +98,15 @@ Use with one of the following browser extensions:
 Release Notes
 =============
 
+Version 1.0.1
+-------------
+_Released 2014-03-04_
+
+*	Small bugfix for issues caused by recent GameFAQs changes
+
 Version 1.0
 -------------
-_Released 2012-07-10_
+_Released 2013-07-10_
 
 *	Initial release
 

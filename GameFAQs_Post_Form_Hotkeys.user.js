@@ -2,7 +2,7 @@
 // @name        GameFAQs Post Form Hotkeys
 // @namespace   OTACON120
 // @author      OTACON120
-// @version     1.0.1
+// @version     1.0.2
 // @description Adds old GameFOX post form hotkeys to stock GameFAQs post form submit buttons
 // @updateURL   http://userscripts.org/scripts/source/172992.meta.js
 // @downloadURL http://userscripts.org/scripts/source/172992.user.js
@@ -115,7 +115,7 @@ var BrowserDetect = {
 	userOS,
 	userBrowser,
 	userBrowserVersion,
-	postForm			= document.getElementById('content').querySelector('.span8 > form .pod .body .details'),
+	postForm			= document.getElementById('content').querySelector('.span8 > form .pod .body .details, .span8 > .body form .pod .body .details'),
 	btnPreview			= postForm.querySelector('.btn[value="Preview Message"]'),
 	btnPreviewNew,
 	btnPreviewSpell		= postForm.querySelector('.btn[value="Preview and Spellcheck Message"]'),

@@ -92,6 +92,12 @@ Use with one of the following browser extensions:
 Release Notes
 =============
 
+Version 1.0.2
+-------------
+_Released 2014-03-13_
+
+*	Bugfix for mistake in previous release that broke the script on the "Post New Message" and "Edit Message" pages
+
 Version 1.0.1
 -------------
 _Released 2014-03-04_
@@ -99,7 +105,7 @@ _Released 2014-03-04_
 *	Small bugfix for issues caused by recent GameFAQs changes
 
 Version 1.0
--------------
+-----------
 _Released 2013-07-10_
 
 *	Initial release

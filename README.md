@@ -45,7 +45,7 @@ Miss the old GameFOX hotkeys (Alt + Shift + Z, etc.) for posting? This script br
 	</tbody>
 </table>
 
-Here's a list of the various access keys use in the hotkeys above:
+Here's a list of the various access keys used in the hotkeys above:
 
 <table>
 	<colgroup>
@@ -59,10 +59,6 @@ Here's a list of the various access keys use in the hotkeys above:
 	<tr>
 		<th scope="row">Preview Message</th>
 		<td>X</td>
-	</tr>
-	<tr>
-		<th scope="row">Preview and Spellcheck Message</th>
-		<td>C</td>
 	</tr>
 	<tr>
 		<th scope="row">Post Message</th>
@@ -83,14 +79,16 @@ Use with one of the following browser extensions:
 
 ### Google Chrome ###
 *	[Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
-*	Convert script to Google Chrome extension:
-
-	>1. Save the script (the `*.user.js` file) to your computer.
-	>2. In Chrome, go to _Tools > Extensions_.
-	>3. Drag/drop the user script file onto the _Extensions_ page.
 
 Release Notes
 =============
+
+Version 1.1
+-----------
+_Released 2014-11-01_
+
+*	Bugfix to make script compatible with new posting engine
+*	Removed "Preview with Spellcheck" accesskey
 
 Version 1.0.2
 -------------

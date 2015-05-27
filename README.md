@@ -82,6 +82,11 @@ Use with one of the following browser extensions:
 
 Release Notes
 =============
+Version 1.1.1
+-------------
+_Released 2015-05-27_
+
+*	Update to work with GameFAQs boards redesign
 
 Version 1.1
 -----------

@@ -2,7 +2,7 @@
 // @name        GameFAQs Post Form Hotkeys
 // @namespace   OTACON120
 // @author      OTACON120
-// @version     1.1
+// @version     1.1.1
 // @description Adds old GameFOX post form hotkeys to stock GameFAQs post form submit buttons
 // @updateURL   https://greasyfork.org/scripts/607-gamefaqs-post-form-hotkeys/code/GameFAQs%20Post%20Form%20Hotkeys.meta.js
 // @downloadURL https://greasyfork.org/scripts/607-gamefaqs-post-form-hotkeys/code/GameFAQs%20Post%20Form%20Hotkeys.user.js
@@ -49,116 +49,110 @@ function versionNewer( v1, v2 ) {
 	return false;
 }
 
-var BrowserDetect = {
-		init: function () {
-			this.browser = this.searchString( this.dataBrowser ) || "An unknown browser";
-			this.version = this.searchVersion(navigator.userAgent)
-				|| this.searchVersion(navigator.appVersion)
-				|| "an unknown version";
-			this.OS = this.searchString(this.dataOS) || "an unknown OS";
-		},
-		searchString: function (data) {
-			var i,
-				dataString,
-				dataString;
-			for (i = 0; i < data.length; i++)	{
-				dataString = data[ i ].string;
-				dataProp = data[ i ].prop;
-				this.versionSearchString = data[ i ].versionSearch || data[ i ].identity;
-				if (dataString) {
-					if (dataString.indexOf(data[ i ].subString) != -1)
-						return data[ i ].identity;
-				}
-				else if (dataProp)
-					return data[ i ].identity;
-			}
-		},
-		searchVersion: function (dataString) {
-			var index = dataString.indexOf(this.versionSearchString);
-			if (index == -1) return;
-			return parseFloat(dataString.substring(index+this.versionSearchString.length+1));
-		},
-		dataBrowser: [
-			{
-				string: navigator.userAgent,
-				subString: "Waterfox",
-				identity: "Firefox"
-			},
-			{
-				string: navigator.userAgent,
-				subString: "Firefox",
-				identity: "Firefox"
-			},
-			{
-				string: navigator.userAgent,
-				subString: "Chrome",
-				identity: "Chrome"
-			}
-		],
-		dataOS : [
-			{
-				string: navigator.platform,
-				subString: "Win",
-				identity: "Windows"
-			},
-			{
-				string: navigator.platform,
-				subString: "Mac",
-				identity: "Mac"
-			},
-			{
-				string: navigator.platform,
-				subString: "Linux",
-				identity: "Linux"
-			}
-		]
+var BrowserDetect, userOS, userBrowser, userBrowserVersion, btnNoPreviewNew, btnPreviewNew, btnResetNew, akHotkey,
+	postForm     = document.getElementById( 'content' ).querySelector( '.span8 > form .pod .body .details, .span8 > .body form .pod .body .details .messagetext' ).parentNode,
+	btnNoPreview = postForm.querySelector( '.btn[value="Post Message"]' );
+	btnPreview   = postForm.querySelector( '.btn[value="Preview Message"]' ),
+	btnReset     = postForm.querySelector( '.btn[value="Reset"]' );
+
+BrowserDetect = {
+	init: function () {
+		this.browser = this.searchString( this.dataBrowser ) || "An unknown browser";
+		this.version = this.searchVersion(navigator.userAgent)
+			|| this.searchVersion(navigator.appVersion)
+			|| "an unknown version";
+		this.OS = this.searchString( this.dataOS ) || "an unknown OS";
 	},
-	userOS,
-	userBrowser,
-	userBrowserVersion,
-	postForm			= document.getElementById( 'content' ).querySelector( '.span8 > form .pod .body .details, .span8 > .body form .pod .body .details' ),
-	btnPreview			= postForm.querySelector( '.btn[value="Preview Message"]' ),
-	btnPreviewNew,
-	btnNoPreview		= postForm.querySelector( '.btn[value="Post Message"]' ),
-	btnNoPreviewNew,
-	btnReset			= postForm.querySelector( '.btn[type="reset"]' ),
-	btnResetNew,
-	akHotkey;
+	searchString: function ( data ) {
+		var i, dataString, dataProp;
+		for ( i = 0; i < data.length; i++ )	{
+			dataString = data[ i ].string;
+			dataProp   = data[ i ].prop;
 
-	BrowserDetect.init();
+			this.versionSearchString = data[ i ].versionSearch || data[ i ].identity;
 
-	userOS				= BrowserDetect.OS;
-	userBrowser			= BrowserDetect.browser;
-	userBrowserVersion	= BrowserDetect.version + ( BrowserDetect.version.toString().indexOf( '.' ) === -1 ? '.0' : '' );
+			if ( dataString ) {
+				if ( dataString.indexOf( data[ i ].subString ) !== -1 ) {
+					return data[ i ].identity;
+				}
+			}
 
-	if ( userOS === 'Windows' || userOS === 'Linux' ) {
-		switch ( userBrowser ) {
-			case 'Firefox':
-				akHotkey = 'Alt + Shift + ';
-				break;
-
-			case 'Chrome':
-				akHotkey = 'Alt + ';
-				break;
+			else if ( dataProp ) {
+				return data[ i ].identity;
+			}
 		}
-	}
-
-	if ( userOS === 'Mac' ) {
-		switch ( userBrowser ) {
-			case 'Firefox':
-				akHotkey = !versionNewer( userBrowserVersion, '13.0' ) ? 'Ctrl + ' : 'Ctrl + Alt + ';
-				break;
-
-			case 'Chrome':
-				akHotkey = 'Ctrl + Alt + ';
+	},
+	searchVersion: function ( dataString ) {
+		var index = dataString.indexOf( this.versionSearchString );
+		if ( index === -1 ) {
+			return;
 		}
-	}
 
-if ( btnPreview ) {
-	btnPreviewNew		= btnPreview.cloneNode( false );
-	btnPreviewNew.title	= 'Preview Message [' + akHotkey + 'X]';
-	btnPreviewNew.setAttribute( 'accesskey', 'x' );
-	postForm.replaceChild( btnPreviewNew, btnPreview );
+		return parseFloat( dataString.substring( index+this.versionSearchString.length + 1 ) );
+	},
+	dataBrowser: [
+		{
+			string: navigator.userAgent,
+			subString: "Waterfox",
+			identity: "Firefox"
+		},
+		{
+			string: navigator.userAgent,
+			subString: "Firefox",
+			identity: "Firefox"
+		},
+		{
+			string: navigator.userAgent,
+			subString: "Chrome",
+			identity: "Chrome"
+		}
+	],
+	dataOS : [
+		{
+			string: navigator.platform,
+			subString: "Win",
+			identity: "Windows"
+		},
+		{
+			string: navigator.platform,
+			subString: "Mac",
+			identity: "Mac"
+		},
+		{
+			string: navigator.platform,
+			subString: "Linux",
+			identity: "Linux"
+		}
+	]
+};
+
+BrowserDetect.init();
+
+userOS				= BrowserDetect.OS;
+userBrowser			= BrowserDetect.browser;
+userBrowserVersion	= BrowserDetect.version + ( BrowserDetect.version.toString().indexOf( '.' ) === -1 ? '.0' : '' );
+
+if ( userOS === 'Windows' || userOS === 'Linux' ) {
+	switch ( userBrowser ) {
+		case 'Firefox':
+			akHotkey = 'Alt + Shift + ';
+			break;
+
+		case 'Chrome':
+			akHotkey = 'Alt + ';
+			break;
+	}
+}
+
+if ( userOS === 'Mac' ) {
+	switch ( userBrowser ) {
+		case 'Firefox':
+			akHotkey = !versionNewer( userBrowserVersion, '13.0' ) ? 'Ctrl + ' : 'Ctrl + Alt + ';
+			break;
+
+		case 'Chrome':
+			akHotkey = 'Ctrl + Alt + ';
+	}
 }
 
 if ( btnNoPreview ) {
@@ -168,9 +162,16 @@ if ( btnNoPreview ) {
 	postForm.replaceChild( btnNoPreviewNew, btnNoPreview );
 }
 
-if ( btnReset ) {
-	btnResetNew			= btnReset.cloneNode( false );
-	btnResetNew.title	= 'Reset [' + akHotkey + 'V]';
+if ( btnPreview ) {
+	btnPreviewNew		= btnPreview.cloneNode( false );
+	btnPreviewNew.title	= 'Preview Message [' + akHotkey + 'X]';
+	btnPreviewNew.setAttribute( 'accesskey', 'x' );
+	postForm.replaceChild( btnPreviewNew, btnPreview );
+}
+
+if ( btnReset) {
+	btnResetNew       = btnReset.cloneNode( false );
+	btnResetNew.title = 'Reset [' + akHotkey + 'V]';
 	btnResetNew.setAttribute( 'accesskey', 'v' );
-	postForm.replaceChild( btnResetNew, btnReset );
+	postForm.replaceChild( btnResetNew, btnReset ); 
 }

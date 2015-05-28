@@ -160,7 +160,6 @@ if ( btnPreview ) {
 	btnPreviewNew.title	= 'Preview Message [' + akHotkey + 'X]';
 	btnPreviewNew.setAttribute( 'accesskey', 'x' );
 	postForm.replaceChild( btnPreviewNew, btnPreview );
-	console.log( btnPreviewNew );
 }
 
 if ( btnNoPreview ) {

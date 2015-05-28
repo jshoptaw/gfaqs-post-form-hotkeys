@@ -49,10 +49,10 @@ function versionNewer( v1, v2 ) {
 	return false;
 }
 
-var BrowserDetect, userOS, userBrowser, userBrowserVersion, btnNoPreviewNew, btnPreviewNew, btnResetNew, akHotkey,
-	postForm     = document.getElementById( 'content' ).querySelector( '.span8 > form .pod .body .details, .span8 > .body form .pod .body .details .messagetext' ).parentNode,
-	btnNoPreview = postForm.querySelector( '.btn[value="Post Message"]' );
+var BrowserDetect, userOS, userBrowser, userBrowserVersion, btnPreviewNew, btnNoPreviewNew, btnResetNew, akHotkey,
+	postForm     = document.getElementById( 'content' ).querySelector( '.span8 > form .pod .body .details .messagetext, .span8 > .body form .pod .body .details .messagetext' ).parentNode,
 	btnPreview   = postForm.querySelector( '.btn[value="Preview Message"]' ),
+	btnNoPreview = postForm.querySelector( '.btn[value="Post Message"]' ),
 	btnReset     = postForm.querySelector( '.btn[value="Reset"]' );
 
 BrowserDetect = {
@@ -155,6 +155,14 @@ if ( userOS === 'Mac' ) {
 	}
 }
 
+if ( btnPreview ) {
+	btnPreviewNew		= btnPreview.cloneNode( false );
+	btnPreviewNew.title	= 'Preview Message [' + akHotkey + 'X]';
+	btnPreviewNew.setAttribute( 'accesskey', 'x' );
+	postForm.replaceChild( btnPreviewNew, btnPreview );
+	console.log( btnPreviewNew );
+}
+
 if ( btnNoPreview ) {
 	btnNoPreviewNew			= btnNoPreview.cloneNode( false );
 	btnNoPreviewNew.title	= 'Post Message [' + akHotkey + 'Z]';
@@ -162,14 +170,7 @@ if ( btnNoPreview ) {
 	postForm.replaceChild( btnNoPreviewNew, btnNoPreview );
 }
 
-if ( btnPreview ) {
-	btnPreviewNew		= btnPreview.cloneNode( false );
-	btnPreviewNew.title	= 'Preview Message [' + akHotkey + 'X]';
-	btnPreviewNew.setAttribute( 'accesskey', 'x' );
-	postForm.replaceChild( btnPreviewNew, btnPreview );
-}
-
-if ( btnReset) {
+if ( btnReset ) {
 	btnResetNew       = btnReset.cloneNode( false );
 	btnResetNew.title = 'Reset [' + akHotkey + 'V]';
 	btnResetNew.setAttribute( 'accesskey', 'v' );

@@ -2,13 +2,11 @@
 // @name        GameFAQs Post Form Hotkeys
 // @namespace   OTACON120
 // @author      OTACON120
-// @version     1.1.1
+// @version     1.1.2
 // @description Adds old GameFOX post form hotkeys to stock GameFAQs post form submit buttons
 // @updateURL   https://greasyfork.org/scripts/607-gamefaqs-post-form-hotkeys/code/GameFAQs%20Post%20Form%20Hotkeys.meta.js
 // @downloadURL https://greasyfork.org/scripts/607-gamefaqs-post-form-hotkeys/code/GameFAQs%20Post%20Form%20Hotkeys.user.js
 // @website     http://otacon120.com/user-scripts/gamefaqs-related/post-form-hotkeys
-// @include     http://www.gamefaqs.com/boards/*-*
-// @include     http://www.gamefaqs.com/boards/post*
 // @match       http://www.gamefaqs.com/boards/*-*
 // @match       http://www.gamefaqs.com/boards/post*
 // @grant       none
@@ -50,7 +48,7 @@ function versionNewer( v1, v2 ) {
 }
 
 var BrowserDetect, userOS, userBrowser, userBrowserVersion, btnPreviewNew, btnNoPreviewNew, btnResetNew, akHotkey,
-	postForm     = document.getElementById( 'content' ).querySelector( '.span8 > form .pod .body .details .messagetext, .span8 > .body form .pod .body .details .messagetext' ).parentNode,
+	postForm     = document.getElementById( 'content' ).querySelector( '.span8 > form .pod .body .messagetext, .span8 > .body form .pod .body .details .messagetext' ).parentNode,
 	btnPreview   = postForm.querySelector( '.btn[value="Preview Message"]' ),
 	btnNoPreview = postForm.querySelector( '.btn[value="Post Message"]' ),
 	btnReset     = postForm.querySelector( '.btn[value="Reset"]' );

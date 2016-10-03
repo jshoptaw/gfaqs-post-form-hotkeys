@@ -79,9 +79,25 @@ Use with one of the following browser extensions:
 
 ### Google Chrome ###
 *	[Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
+*	[Violentmonkey](https://addons.opera.com/extensions/details/violent-monkey/)
+
+### Android ###
+
+#### Mozilla Firefox ###
+*	[usi (User|Unified Script Injector)](https://addons.mozilla.org/en-US/firefox/addon/userunified-script-injector/)
+
+#### Dolphin ####
+*	[Tampermonkey Dolphin](https://play.google.com/store/apps/details?id=net.tampermonkey.dolphin)
 
 Release Notes
 =============
+
+Version 1.1.2
+-------------
+_Released 2016-10-03_
+
+*	Fix bug where hotkeys were not being applied to quickpost form due to small HTML changes
+
 Version 1.1.1
 -------------
 _Released 2015-05-27_
